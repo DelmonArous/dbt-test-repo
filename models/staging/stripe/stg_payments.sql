@@ -1,12 +1,8 @@
 select
-
     id as payment_id,
     orderid as order_id,
     paymentmethod as payment_method,
     status,
-
-    -- amount is stored in cents, convert it to dollars
-    amount / 100 as amount,
+    amount / 100 as amount, -- amount is stored in cents, convert it to dollars
     created as created_at
-
-from `disykefravar-dev-d3d2`.stripe.payment 
+from {{ source('jaffle_shop', 'payment') }} 
